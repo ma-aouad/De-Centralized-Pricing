@@ -43,20 +43,20 @@ The following software and package versions were used in this project:
 
 ## Usage
 
-### Running Mathematica Simulations
+### Running Mathematica for solving Piecewise Polynomial System
 
 1. Open the desired Mathematica notebook in the `mathematica/` folder.
-2. Run the notebook `MathematicaRunFile` to perform the simulations and generate output files. For detailed analysis of the underlying code, go to the notebook `SystemOfPolynomialsOnly`.
+2. Run the notebook `MathematicaRunFile` to replicate the main results in Section 6 of the paper. For detailed analysis of the underlying code, go to the notebook `SystemOfPolynomialsOnly`.
 
 ### Running Python Simulations
 
 1. Navigate to the `python/` folder.
-2. Run the desired simulation using the Jupyter notebook `SimulationCodeForSubmission.ipynb`.
+2. Replicate the simulation results in the paper that are used for robustness check using the Jupyter notebook `SimulationCodeForSubmission.ipynb`.
 
 ### Analyzing and Plotting Results with R
 
 1. Navigate to the `r/` folder in your terminal.
-2. Run the R script in the Jupyter notebooks `Figures_RcodeForPiecewisePolynomials_Jupyter.ipynb` and `Figures_RcodeForSimulation_Jupyter.ipynb`.
+2. Run the R script in the Jupyter notebooks `Figures_RcodeForPiecewisePolynomials_Jupyter.ipynb` and `Figures_RcodeForSimulation_Jupyter.ipynb` to create the figures in the paper.
 
 ## License
 
