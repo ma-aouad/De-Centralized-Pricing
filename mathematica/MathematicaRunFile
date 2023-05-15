@@ -1,6 +1,6 @@
 SetOptions[$FrontEndSession, 
  MessageOptions -> {"WarningAction" -> "Ignore"}]
-
+(*Adjust the link in the next line appropriately*)
 NotebookEvaluate[
   "C:/Users/osaritac/Documents/Wolfram \
 Mathematica/SystemOfPolynomialsOnly_forsubmission.nb"];
