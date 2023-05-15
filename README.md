@@ -1,8 +1,8 @@
 # Centralized vs Decentralized Pricing Controls for Dynamic Matching Platforms: Simulation and Analysis Code
 
-This repository contains the simulation and analysis code for the paper "Centralized Versus Decentralized Pricing Controls for Dynamic Matching Platforms." The paper examines the effects of centralized and decentralized pricing controls on online service platforms using a fluid model of dynamic two-sided matching. Our simulations and analysis compare various degrees of centralization and their impact on social welfare. We identify semi-centralized pricing rules that retain flexibility but achieve near-optimal outcomes in most regimes.
+This repository contains the simulation and analysis code for the paper "Centralized Versus Decentralized Pricing Controls for Dynamic Matching Platforms." The paper examines the effects of centralized and decentralized pricing controls on online service platforms using a fluid model of dynamic two-sided matching. Our simulations and analysis compare various degrees of centralization and their impact on social welfare. 
 
-The simulations were implemented in Mathematica and Python, and the data analysis and plotting were done in R. In this repository, you'll find the necessary files to replicate our simulations, analyze
+The simulations were implemented in Mathematica and Python, and the data analysis and plotting were done in R. In this repository, you'll find the necessary files to replicate our simulations.
 
 ## Dependencies
 
@@ -39,7 +39,7 @@ The following software and package versions were used in this project:
 - `mathematica/`: Folder containing Mathematica notebooks for the simulations
 - `python/`: Folder containing Python scripts for the simulations
 - `r/`: Folder containing R scripts for data analysis and plotting
-- `data/`: Folder containing input data (if any) and generated simulation results
+- `data/`: Folder containing simulation results to generate the figures in the paper 
 
 ## Usage
 
