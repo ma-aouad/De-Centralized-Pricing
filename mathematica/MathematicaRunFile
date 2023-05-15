@@ -1,0 +1,43 @@
+SetOptions[$FrontEndSession, 
+ MessageOptions -> {"WarningAction" -> "Ignore"}]
+
+NotebookEvaluate[
+  "C:/Users/osaritac/Documents/Wolfram \
+Mathematica/SystemOfPolynomialsOnly_forsubmission.nb"];
+
+mathematicarun[inc_, eps_, mulist_, lslist_] :=
+ (
+  (*outcomecalcbasic[];
+  calctaubasic[];*)
+  
+  mulength = Length[mulist];
+  lslength = Length[lslist];
+  
+  start = TimeObject[Now];
+  tbl0 = Table[
+    singlerun[eps, mulist[[i]], lslist[[j]], inc], {i, 1, mulength, 
+     1}, {j, 1, lslength, 1}];
+  finish = TimeObject[Now];
+  Print[finish - start];
+  )
+
+(*Set price increments for p_min and p_max*)
+
+inc = 0.05;
+
+(*The set of departure rates \mu=\mu_S=\mu_B and supply arrival rates \
+\lambda_S for the run (\lambda_B is kept at 1)*)
+
+mulist = {0.01, 0.1, 0.2, 0.3, 0.4, 0.5, 0.6, 0.7, 0.8, 0.9, 0.99};
+lslist = {0.01, 0.02, 0.1, 0.2, 0.5, 0.75, 1, 1.25, 1.5, 2, 5, 10, 50,
+    100};
+
+(*Set the horizontal differentiation parameter \epsilon in the paper*)
+
+eps = 0.1
+
+(* Run the following to obtain results with the market conditions set \
+above*)
+
+mathematicarun[inc, eps, mulist, lslist]
+
