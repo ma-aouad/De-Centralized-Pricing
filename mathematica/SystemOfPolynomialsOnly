@@ -1,0 +1,1617 @@
+(*We need the package GeneralUtilities for the function \
+ToAssociations[...] that recursively replaces lists of rules with \
+associations having the same keys and values.*)
+
+Needs["GeneralUtilities`"]
+
+(*Define the total mass of buyers NB*)
+
+NB = (wmax - wmin)*lb/mb
+
+(lb (wmax - wmin))/mb
+
+(*Define the total mass of sellers NS*)
+
+NS = ( \!\(\*
+TagBox[GridBox[{
+{"\[Piecewise]", GridBox[{
+{
+RowBox[{"z", "+", 
+RowBox[{"ls", 
+RowBox[{
+RowBox[{"(", 
+RowBox[{"x", "+", 
+RowBox[{"Min", "[", 
+RowBox[{"x", ",", "y"}], "]"}], "-", "eps"}], ")"}], "/", "ms"}]}]}], 
+RowBox[{"x", ">", 
+RowBox[{"2", "eps"}]}]},
+{
+RowBox[{"z", "+", 
+RowBox[{"ls", 
+RowBox[{
+RowBox[{"(", 
+RowBox[{"x", "+", 
+RowBox[{"2", 
+RowBox[{"Min", "[", 
+RowBox[{"x", ",", "y"}], "]"}]}]}], ")"}], "/", 
+RowBox[{"(", 
+RowBox[{"2", "ms"}], ")"}]}]}]}], "True"}
+},
+AllowedDimensions->{2, Automatic},
+Editable->True,
+GridBoxAlignment->{
+            "Columns" -> {{Left}}, "ColumnsIndexed" -> {}, 
+             "Rows" -> {{Baseline}}, "RowsIndexed" -> {}, 
+             "Items" -> {}, "ItemsIndexed" -> {}},
+GridBoxItemSize->{
+            "Columns" -> {{Automatic}}, "ColumnsIndexed" -> {}, 
+             "Rows" -> {{1.}}, "RowsIndexed" -> {}, "Items" -> {}, 
+             "ItemsIndexed" -> {}},
+GridBoxSpacings->{"Columns" -> {
+Offset[0.27999999999999997`], {
+Offset[0.84]}, 
+Offset[0.27999999999999997`]}, "ColumnsIndexed" -> {}, "Rows" -> {
+Offset[0.2], {
+Offset[0.4]}, 
+Offset[0.2]}, "RowsIndexed" -> {}, "Items" -> {}, 
+             "ItemsIndexed" -> {}},
+Selectable->True]}
+},
+GridBoxAlignment->{
+         "Columns" -> {{Left}}, "ColumnsIndexed" -> {}, 
+          "Rows" -> {{Baseline}}, "RowsIndexed" -> {}, "Items" -> {}, 
+          "ItemsIndexed" -> {}},
+GridBoxItemSize->{
+         "Columns" -> {{Automatic}}, "ColumnsIndexed" -> {}, 
+          "Rows" -> {{1.}}, "RowsIndexed" -> {}, "Items" -> {}, 
+          "ItemsIndexed" -> {}},
+GridBoxSpacings->{"Columns" -> {
+Offset[0.27999999999999997`], {
+Offset[0.35]}, 
+Offset[0.27999999999999997`]}, "ColumnsIndexed" -> {}, "Rows" -> {
+Offset[0.2], {
+Offset[0.4]}, 
+Offset[0.2]}, "RowsIndexed" -> {}, "Items" -> {}, 
+          "ItemsIndexed" -> {}}],
+"Piecewise",
+DeleteWithContents->True,
+Editable->False,
+SelectWithContents->True,
+Selectable->False]\) ) /. {x -> wmax - wmin, 
+    y -> pmax - wmin - eps} /. {eps -> epsilon}
+
+\!\(
+TagBox[GridBox[{
+{"\[Piecewise]", GridBox[{
+{
+RowBox[{"z", "+", 
+FractionBox[
+RowBox[{"ls", " ", 
+RowBox[{"(", 
+RowBox[{
+RowBox[{"-", "epsilon"}], "+", "wmax", "-", "wmin", "+", 
+RowBox[{"Min", "[", 
+RowBox[{
+RowBox[{
+RowBox[{"-", "epsilon"}], "+", "pmax", "-", "wmin"}], ",", 
+RowBox[{"wmax", "-", "wmin"}]}], "]"}]}], ")"}]}], "ms"]}], 
+RowBox[{
+RowBox[{"wmax", "-", "wmin"}], ">", 
+RowBox[{"2", " ", "epsilon"}]}]},
+{
+RowBox[{"z", "+", 
+FractionBox[
+RowBox[{"ls", " ", 
+RowBox[{"(", 
+RowBox[{"wmax", "-", "wmin", "+", 
+RowBox[{"2", " ", 
+RowBox[{"Min", "[", 
+RowBox[{
+RowBox[{
+RowBox[{"-", "epsilon"}], "+", "pmax", "-", "wmin"}], ",", 
+RowBox[{"wmax", "-", "wmin"}]}], "]"}]}]}], ")"}]}], 
+RowBox[{"2", " ", "ms"}]]}], 
+TagBox["True",
+"PiecewiseDefault",
+AutoDelete->True]}
+},
+AllowedDimensions->{2, Automatic},
+Editable->True,
+GridBoxAlignment->{
+        "Columns" -> {{Left}}, "ColumnsIndexed" -> {}, 
+         "Rows" -> {{Baseline}}, "RowsIndexed" -> {}, "Items" -> {}, 
+         "ItemsIndexed" -> {}},
+GridBoxItemSize->{
+        "Columns" -> {{Automatic}}, "ColumnsIndexed" -> {}, 
+         "Rows" -> {{1.}}, "RowsIndexed" -> {}, "Items" -> {}, 
+         "ItemsIndexed" -> {}},
+GridBoxSpacings->{"Columns" -> {
+Offset[0.27999999999999997`], {
+Offset[0.84]}, 
+Offset[0.27999999999999997`]}, "ColumnsIndexed" -> {}, "Rows" -> {
+Offset[0.2], {
+Offset[0.4]}, 
+Offset[0.2]}, "RowsIndexed" -> {}, "Items" -> {}, 
+         "ItemsIndexed" -> {}},
+Selectable->True]}
+},
+GridBoxAlignment->{
+     "Columns" -> {{Left}}, "ColumnsIndexed" -> {}, 
+      "Rows" -> {{Baseline}}, "RowsIndexed" -> {}, "Items" -> {}, 
+      "ItemsIndexed" -> {}},
+GridBoxItemSize->{
+     "Columns" -> {{Automatic}}, "ColumnsIndexed" -> {}, 
+      "Rows" -> {{1.}}, "RowsIndexed" -> {}, "Items" -> {}, 
+      "ItemsIndexed" -> {}},
+GridBoxSpacings->{"Columns" -> {
+Offset[0.27999999999999997`], {
+Offset[0.35]}, 
+Offset[0.27999999999999997`]}, "ColumnsIndexed" -> {}, "Rows" -> {
+Offset[0.2], {
+Offset[0.4]}, 
+Offset[0.2]}, "RowsIndexed" -> {}, "Items" -> {}, 
+      "ItemsIndexed" -> {}}],
+"Piecewise",
+DeleteWithContents->True,
+Editable->False,
+SelectWithContents->True,
+Selectable->False]\)
+
+(*Define the total mass of sellers with price pmax*)
+
+NSmax = ( \!\(\*
+TagBox[GridBox[{
+{"\[Piecewise]", GridBox[{
+{
+RowBox[{"ls", 
+RowBox[{
+RowBox[{"(", 
+RowBox[{"x", "-", 
+RowBox[{"Min", "[", 
+RowBox[{"x", ",", "y"}], "]"}]}], ")"}], "/", 
+RowBox[{"(", 
+RowBox[{"2", "ms"}], ")"}]}]}], 
+RowBox[{
+RowBox[{"x", "-", 
+RowBox[{"2", "eps"}]}], "<", "y"}]},
+{
+RowBox[{"ls", 
+RowBox[{
+RowBox[{"(", 
+RowBox[{"x", "-", "y", "-", "eps"}], ")"}], "/", "ms"}]}], 
+RowBox[{"0", "<=", " ", "y", "<=", " ", 
+RowBox[{"x", "-", 
+RowBox[{"2", "eps"}]}]}]}
+},
+AllowedDimensions->{2, Automatic},
+Editable->True,
+GridBoxAlignment->{
+            "Columns" -> {{Left}}, "ColumnsIndexed" -> {}, 
+             "Rows" -> {{Baseline}}, "RowsIndexed" -> {}, 
+             "Items" -> {}, "ItemsIndexed" -> {}},
+GridBoxItemSize->{
+            "Columns" -> {{Automatic}}, "ColumnsIndexed" -> {}, 
+             "Rows" -> {{1.}}, "RowsIndexed" -> {}, "Items" -> {}, 
+             "ItemsIndexed" -> {}},
+GridBoxSpacings->{"Columns" -> {
+Offset[0.27999999999999997`], {
+Offset[0.84]}, 
+Offset[0.27999999999999997`]}, "ColumnsIndexed" -> {}, "Rows" -> {
+Offset[0.2], {
+Offset[0.4]}, 
+Offset[0.2]}, "RowsIndexed" -> {}, "Items" -> {}, 
+             "ItemsIndexed" -> {}},
+Selectable->True]}
+},
+GridBoxAlignment->{
+         "Columns" -> {{Left}}, "ColumnsIndexed" -> {}, 
+          "Rows" -> {{Baseline}}, "RowsIndexed" -> {}, "Items" -> {}, 
+          "ItemsIndexed" -> {}},
+GridBoxItemSize->{
+         "Columns" -> {{Automatic}}, "ColumnsIndexed" -> {}, 
+          "Rows" -> {{1.}}, "RowsIndexed" -> {}, "Items" -> {}, 
+          "ItemsIndexed" -> {}},
+GridBoxSpacings->{"Columns" -> {
+Offset[0.27999999999999997`], {
+Offset[0.35]}, 
+Offset[0.27999999999999997`]}, "ColumnsIndexed" -> {}, "Rows" -> {
+Offset[0.2], {
+Offset[0.4]}, 
+Offset[0.2]}, "RowsIndexed" -> {}, "Items" -> {}, 
+          "ItemsIndexed" -> {}}],
+"Piecewise",
+DeleteWithContents->True,
+Editable->False,
+SelectWithContents->True,
+Selectable->False]\) ) /. {x -> wmax - wmin, 
+    y -> pmax - wmin - eps} /. {eps -> epsilon}
+
+\!\(
+TagBox[GridBox[{
+{"\[Piecewise]", GridBox[{
+{
+FractionBox[
+RowBox[{"ls", " ", 
+RowBox[{"(", 
+RowBox[{"wmax", "-", "wmin", "-", 
+RowBox[{"Min", "[", 
+RowBox[{
+RowBox[{
+RowBox[{"-", "epsilon"}], "+", "pmax", "-", "wmin"}], ",", 
+RowBox[{"wmax", "-", "wmin"}]}], "]"}]}], ")"}]}], 
+RowBox[{"2", " ", "ms"}]], 
+RowBox[{
+RowBox[{
+RowBox[{
+RowBox[{"-", "2"}], " ", "epsilon"}], "+", "wmax", "-", "wmin"}], "<", 
+RowBox[{
+RowBox[{"-", "epsilon"}], "+", "pmax", "-", "wmin"}]}]},
+{
+FractionBox[
+RowBox[{"ls", " ", 
+RowBox[{"(", 
+RowBox[{
+RowBox[{"-", "pmax"}], "+", "wmax"}], ")"}]}], "ms"], 
+RowBox[{"0", "<=", 
+RowBox[{
+RowBox[{"-", "epsilon"}], "+", "pmax", "-", "wmin"}], "<=", 
+RowBox[{
+RowBox[{
+RowBox[{"-", "2"}], " ", "epsilon"}], "+", "wmax", "-", "wmin"}]}]},
+{"0", 
+TagBox["True",
+"PiecewiseDefault",
+AutoDelete->True]}
+},
+AllowedDimensions->{2, Automatic},
+Editable->True,
+GridBoxAlignment->{
+        "Columns" -> {{Left}}, "ColumnsIndexed" -> {}, 
+         "Rows" -> {{Baseline}}, "RowsIndexed" -> {}, "Items" -> {}, 
+         "ItemsIndexed" -> {}},
+GridBoxItemSize->{
+        "Columns" -> {{Automatic}}, "ColumnsIndexed" -> {}, 
+         "Rows" -> {{1.}}, "RowsIndexed" -> {}, "Items" -> {}, 
+         "ItemsIndexed" -> {}},
+GridBoxSpacings->{"Columns" -> {
+Offset[0.27999999999999997`], {
+Offset[0.84]}, 
+Offset[0.27999999999999997`]}, "ColumnsIndexed" -> {}, "Rows" -> {
+Offset[0.2], {
+Offset[0.4]}, 
+Offset[0.2]}, "RowsIndexed" -> {}, "Items" -> {}, 
+         "ItemsIndexed" -> {}},
+Selectable->True]}
+},
+GridBoxAlignment->{
+     "Columns" -> {{Left}}, "ColumnsIndexed" -> {}, 
+      "Rows" -> {{Baseline}}, "RowsIndexed" -> {}, "Items" -> {}, 
+      "ItemsIndexed" -> {}},
+GridBoxItemSize->{
+     "Columns" -> {{Automatic}}, "ColumnsIndexed" -> {}, 
+      "Rows" -> {{1.}}, "RowsIndexed" -> {}, "Items" -> {}, 
+      "ItemsIndexed" -> {}},
+GridBoxSpacings->{"Columns" -> {
+Offset[0.27999999999999997`], {
+Offset[0.35]}, 
+Offset[0.27999999999999997`]}, "ColumnsIndexed" -> {}, "Rows" -> {
+Offset[0.2], {
+Offset[0.4]}, 
+Offset[0.2]}, "RowsIndexed" -> {}, "Items" -> {}, 
+      "ItemsIndexed" -> {}}],
+"Piecewise",
+DeleteWithContents->True,
+Editable->False,
+SelectWithContents->True,
+Selectable->False]\)
+
+(* Define P1(x,y,z) *)
+
+poly1 = \!\(\*
+TagBox[GridBox[{
+{"\[Piecewise]", GridBox[{
+{
+RowBox[{
+RowBox[{"-", "1"}], "+", "wmax", "+", 
+RowBox[{
+RowBox[{"(", 
+RowBox[{
+RowBox[{"-", "1"}], "+", 
+FractionBox["1", "mb"]}], ")"}], " ", 
+RowBox[{"Min", "[", 
+RowBox[{
+FractionBox[
+RowBox[{"mb", " ", 
+RowBox[{"(", 
+RowBox[{"wmax", "-", "wmin"}], ")"}], " ", 
+RowBox[{"(", 
+RowBox[{
+RowBox[{
+FractionBox["1", "2"], " ", "ls", " ", 
+RowBox[{"(", 
+RowBox[{"wmax", "-", "wmin"}], ")"}]}], "+", 
+RowBox[{"ms", " ", "z"}]}], ")"}]}], 
+RowBox[{"4", " ", "epsilon", " ", "lb", " ", "ms"}]], ",", 
+FractionBox[
+RowBox[{
+SuperscriptBox[
+RowBox[{"(", 
+RowBox[{"wmax", "-", "wmin"}], ")"}], "2"], " ", 
+RowBox[{"(", 
+RowBox[{
+RowBox[{
+FractionBox["1", "2"], " ", "ls", " ", 
+RowBox[{"(", 
+RowBox[{"wmax", "-", "wmin"}], ")"}]}], "+", 
+RowBox[{"ms", " ", "z"}]}], ")"}]}], 
+RowBox[{"4", "epsilon", " ", 
+RowBox[{"(", 
+RowBox[{
+RowBox[{
+FractionBox["1", "2"], " ", "ls", " ", 
+RowBox[{"(", 
+RowBox[{"wmax", "-", "wmin"}], ")"}]}], "+", 
+RowBox[{"ms", " ", "z"}], "+", 
+RowBox[{"ls", " ", 
+RowBox[{"Min", "[", 
+RowBox[{
+RowBox[{
+RowBox[{"-", "epsilon"}], "+", "pmax", "-", "wmin"}], ",", 
+RowBox[{"wmax", "-", "wmin"}]}], "]"}]}]}], ")"}]}]]}], "]"}]}]}], 
+RowBox[{
+RowBox[{"wmax", "-", "wmin"}], "<=", 
+RowBox[{"2", " ", "epsilon"}]}]},
+{
+RowBox[{
+RowBox[{"-", "1"}], "+", "wmax", "+", 
+RowBox[{
+RowBox[{"(", 
+RowBox[{
+RowBox[{"-", "1"}], "+", 
+FractionBox["1", "mb"]}], ")"}], " ", 
+RowBox[{"Min", "[", 
+RowBox[{
+FractionBox[
+RowBox[{"mb", " ", 
+RowBox[{"(", 
+RowBox[{
+RowBox[{"-", "epsilon"}], "+", "wmax", "-", "wmin"}], ")"}], " ", 
+RowBox[{"(", 
+RowBox[{
+RowBox[{
+RowBox[{"-", "epsilon"}], " ", "ls"}], "+", 
+RowBox[{"ls", " ", 
+RowBox[{"(", 
+RowBox[{"wmax", "-", "wmin"}], ")"}]}], "+", 
+RowBox[{"ms", " ", "z"}]}], ")"}]}], 
+RowBox[{"lb", " ", "ms", " ", 
+RowBox[{"(", 
+RowBox[{"wmax", "-", "wmin"}], ")"}]}]], ",", 
+FractionBox[
+RowBox[{
+RowBox[{"(", 
+RowBox[{
+RowBox[{"-", "epsilon"}], "+", "wmax", "-", "wmin"}], ")"}], " ", 
+RowBox[{"(", 
+RowBox[{
+RowBox[{
+RowBox[{"-", "epsilon"}], " ", "ls"}], "+", 
+RowBox[{"ls", " ", 
+RowBox[{"(", 
+RowBox[{"wmax", "-", "wmin"}], ")"}]}], "+", 
+RowBox[{"ms", " ", "z"}]}], ")"}]}], 
+RowBox[{
+RowBox[{
+RowBox[{"-", "epsilon"}], " ", "ls"}], "+", 
+RowBox[{"ls", " ", 
+RowBox[{"(", 
+RowBox[{"wmax", "-", "wmin"}], ")"}]}], "+", 
+RowBox[{"ms", " ", "z"}], "+", 
+RowBox[{"ls", " ", 
+RowBox[{"Min", "[", 
+RowBox[{
+RowBox[{
+RowBox[{"-", "epsilon"}], "+", "pmax", "-", "wmin"}], ",", 
+RowBox[{"wmax", "-", "wmin"}]}], "]"}]}]}]]}], "]"}]}]}], 
+TagBox["True",
+"PiecewiseDefault",
+AutoDelete->True]}
+},
+AllowedDimensions->{2, Automatic},
+Editable->True,
+GridBoxAlignment->{
+         "Columns" -> {{Left}}, "ColumnsIndexed" -> {}, 
+          "Rows" -> {{Baseline}}, "RowsIndexed" -> {}, "Items" -> {}, 
+          "ItemsIndexed" -> {}},
+GridBoxItemSize->{
+         "Columns" -> {{Automatic}}, "ColumnsIndexed" -> {}, 
+          "Rows" -> {{1.}}, "RowsIndexed" -> {}, "Items" -> {}, 
+          "ItemsIndexed" -> {}},
+GridBoxSpacings->{"Columns" -> {
+Offset[0.27999999999999997`], {
+Offset[0.84]}, 
+Offset[0.27999999999999997`]}, "ColumnsIndexed" -> {}, "Rows" -> {
+Offset[0.2], {
+Offset[0.4]}, 
+Offset[0.2]}, "RowsIndexed" -> {}, "Items" -> {}, 
+          "ItemsIndexed" -> {}},
+Selectable->True]}
+},
+GridBoxAlignment->{
+      "Columns" -> {{Left}}, "ColumnsIndexed" -> {}, 
+       "Rows" -> {{Baseline}}, "RowsIndexed" -> {}, "Items" -> {}, 
+       "ItemsIndexed" -> {}},
+GridBoxItemSize->{
+      "Columns" -> {{Automatic}}, "ColumnsIndexed" -> {}, 
+       "Rows" -> {{1.}}, "RowsIndexed" -> {}, "Items" -> {}, 
+       "ItemsIndexed" -> {}},
+GridBoxSpacings->{"Columns" -> {
+Offset[0.27999999999999997`], {
+Offset[0.35]}, 
+Offset[0.27999999999999997`]}, "ColumnsIndexed" -> {}, "Rows" -> {
+Offset[0.2], {
+Offset[0.4]}, 
+Offset[0.2]}, "RowsIndexed" -> {}, "Items" -> {}, 
+       "ItemsIndexed" -> {}}],
+"Piecewise",
+DeleteWithContents->True,
+Editable->False,
+SelectWithContents->True,
+Selectable->False]\)
+
+\!\(
+TagBox[GridBox[{
+{"\[Piecewise]", GridBox[{
+{
+RowBox[{
+RowBox[{"-", "1"}], "+", "wmax", "+", 
+RowBox[{
+RowBox[{"(", 
+RowBox[{
+RowBox[{"-", "1"}], "+", 
+FractionBox["1", "mb"]}], ")"}], " ", 
+RowBox[{"Min", "[", 
+RowBox[{
+FractionBox[
+RowBox[{"mb", " ", 
+RowBox[{"(", 
+RowBox[{"wmax", "-", "wmin"}], ")"}], " ", 
+RowBox[{"(", 
+RowBox[{
+RowBox[{
+FractionBox["1", "2"], " ", "ls", " ", 
+RowBox[{"(", 
+RowBox[{"wmax", "-", "wmin"}], ")"}]}], "+", 
+RowBox[{"ms", " ", "z"}]}], ")"}]}], 
+RowBox[{"4", " ", "epsilon", " ", "lb", " ", "ms"}]], ",", 
+FractionBox[
+RowBox[{
+SuperscriptBox[
+RowBox[{"(", 
+RowBox[{"wmax", "-", "wmin"}], ")"}], "2"], " ", 
+RowBox[{"(", 
+RowBox[{
+RowBox[{
+FractionBox["1", "2"], " ", "ls", " ", 
+RowBox[{"(", 
+RowBox[{"wmax", "-", "wmin"}], ")"}]}], "+", 
+RowBox[{"ms", " ", "z"}]}], ")"}]}], 
+RowBox[{"4", " ", "epsilon", " ", 
+RowBox[{"(", 
+RowBox[{
+RowBox[{
+FractionBox["1", "2"], " ", "ls", " ", 
+RowBox[{"(", 
+RowBox[{"wmax", "-", "wmin"}], ")"}]}], "+", 
+RowBox[{"ms", " ", "z"}], "+", 
+RowBox[{"ls", " ", 
+RowBox[{"Min", "[", 
+RowBox[{
+RowBox[{
+RowBox[{"-", "epsilon"}], "+", "pmax", "-", "wmin"}], ",", 
+RowBox[{"wmax", "-", "wmin"}]}], "]"}]}]}], ")"}]}]]}], "]"}]}]}], 
+RowBox[{
+RowBox[{"wmax", "-", "wmin"}], "<=", 
+RowBox[{"2", " ", "epsilon"}]}]},
+{
+RowBox[{
+RowBox[{"-", "1"}], "+", "wmax", "+", 
+RowBox[{
+RowBox[{"(", 
+RowBox[{
+RowBox[{"-", "1"}], "+", 
+FractionBox["1", "mb"]}], ")"}], " ", 
+RowBox[{"Min", "[", 
+RowBox[{
+FractionBox[
+RowBox[{"mb", " ", 
+RowBox[{"(", 
+RowBox[{
+RowBox[{"-", "epsilon"}], "+", "wmax", "-", "wmin"}], ")"}], " ", 
+RowBox[{"(", 
+RowBox[{
+RowBox[{
+RowBox[{"-", "epsilon"}], " ", "ls"}], "+", 
+RowBox[{"ls", " ", 
+RowBox[{"(", 
+RowBox[{"wmax", "-", "wmin"}], ")"}]}], "+", 
+RowBox[{"ms", " ", "z"}]}], ")"}]}], 
+RowBox[{"lb", " ", "ms", " ", 
+RowBox[{"(", 
+RowBox[{"wmax", "-", "wmin"}], ")"}]}]], ",", 
+FractionBox[
+RowBox[{
+RowBox[{"(", 
+RowBox[{
+RowBox[{"-", "epsilon"}], "+", "wmax", "-", "wmin"}], ")"}], " ", 
+RowBox[{"(", 
+RowBox[{
+RowBox[{
+RowBox[{"-", "epsilon"}], " ", "ls"}], "+", 
+RowBox[{"ls", " ", 
+RowBox[{"(", 
+RowBox[{"wmax", "-", "wmin"}], ")"}]}], "+", 
+RowBox[{"ms", " ", "z"}]}], ")"}]}], 
+RowBox[{
+RowBox[{
+RowBox[{"-", "epsilon"}], " ", "ls"}], "+", 
+RowBox[{"ls", " ", 
+RowBox[{"(", 
+RowBox[{"wmax", "-", "wmin"}], ")"}]}], "+", 
+RowBox[{"ms", " ", "z"}], "+", 
+RowBox[{"ls", " ", 
+RowBox[{"Min", "[", 
+RowBox[{
+RowBox[{
+RowBox[{"-", "epsilon"}], "+", "pmax", "-", "wmin"}], ",", 
+RowBox[{"wmax", "-", "wmin"}]}], "]"}]}]}]]}], "]"}]}]}], 
+TagBox["True",
+"PiecewiseDefault",
+AutoDelete->True]}
+},
+AllowedDimensions->{2, Automatic},
+Editable->True,
+GridBoxAlignment->{
+        "Columns" -> {{Left}}, "ColumnsIndexed" -> {}, 
+         "Rows" -> {{Baseline}}, "RowsIndexed" -> {}, "Items" -> {}, 
+         "ItemsIndexed" -> {}},
+GridBoxItemSize->{
+        "Columns" -> {{Automatic}}, "ColumnsIndexed" -> {}, 
+         "Rows" -> {{1.}}, "RowsIndexed" -> {}, "Items" -> {}, 
+         "ItemsIndexed" -> {}},
+GridBoxSpacings->{"Columns" -> {
+Offset[0.27999999999999997`], {
+Offset[0.84]}, 
+Offset[0.27999999999999997`]}, "ColumnsIndexed" -> {}, "Rows" -> {
+Offset[0.2], {
+Offset[0.4]}, 
+Offset[0.2]}, "RowsIndexed" -> {}, "Items" -> {}, 
+         "ItemsIndexed" -> {}},
+Selectable->True]}
+},
+GridBoxAlignment->{
+     "Columns" -> {{Left}}, "ColumnsIndexed" -> {}, 
+      "Rows" -> {{Baseline}}, "RowsIndexed" -> {}, "Items" -> {}, 
+      "ItemsIndexed" -> {}},
+GridBoxItemSize->{
+     "Columns" -> {{Automatic}}, "ColumnsIndexed" -> {}, 
+      "Rows" -> {{1.}}, "RowsIndexed" -> {}, "Items" -> {}, 
+      "ItemsIndexed" -> {}},
+GridBoxSpacings->{"Columns" -> {
+Offset[0.27999999999999997`], {
+Offset[0.35]}, 
+Offset[0.27999999999999997`]}, "ColumnsIndexed" -> {}, "Rows" -> {
+Offset[0.2], {
+Offset[0.4]}, 
+Offset[0.2]}, "RowsIndexed" -> {}, "Items" -> {}, 
+      "ItemsIndexed" -> {}}],
+"Piecewise",
+DeleteWithContents->True,
+Editable->False,
+SelectWithContents->True,
+Selectable->False]\)
+
+(* Define P2(x,y,z) *)
+
+poly2 = \!\(\*
+TagBox[GridBox[{
+{"\[Piecewise]", GridBox[{
+{
+RowBox[{
+RowBox[{
+FractionBox["1", "2"], " ", "ls", " ", 
+RowBox[{"(", 
+RowBox[{"wmax", "-", "wmin"}], ")"}]}], "-", 
+RowBox[{"ls", " ", 
+RowBox[{"(", 
+RowBox[{"epsilon", "+", "wmin"}], ")"}]}], "+", 
+RowBox[{"ms", " ", "z"}], "+", 
+RowBox[{
+FractionBox["1", "mb"], 
+RowBox[{"lb", " ", 
+RowBox[{"(", 
+RowBox[{
+RowBox[{"-", "1"}], "+", 
+FractionBox["1", "ms"]}], ")"}], " ", "ms", " ", 
+RowBox[{"Min", "[", 
+RowBox[{
+FractionBox[
+RowBox[{"mb", " ", 
+RowBox[{"(", 
+RowBox[{"wmax", "-", "wmin"}], ")"}], " ", 
+RowBox[{"(", 
+RowBox[{
+RowBox[{
+FractionBox["1", "2"], " ", "ls", " ", 
+RowBox[{"(", 
+RowBox[{"wmax", "-", "wmin"}], ")"}]}], "+", 
+RowBox[{"ms", " ", "z"}]}], ")"}]}], 
+RowBox[{"4", " ", "epsilon", " ", "lb", " ", "ms"}]], ",", 
+FractionBox[
+RowBox[{
+SuperscriptBox[
+RowBox[{"(", 
+RowBox[{"wmax", "-", "wmin"}], ")"}], "2"], " ", 
+RowBox[{"(", 
+RowBox[{
+RowBox[{
+FractionBox["1", "2"], " ", "ls", " ", 
+RowBox[{"(", 
+RowBox[{"wmax", "-", "wmin"}], ")"}]}], "+", 
+RowBox[{"ms", " ", "z"}]}], ")"}]}], 
+RowBox[{"4", " ", "epsilon", " ", 
+RowBox[{"(", 
+RowBox[{
+RowBox[{
+FractionBox["1", "2"], " ", "ls", " ", 
+RowBox[{"(", 
+RowBox[{"wmax", "-", "wmin"}], ")"}]}], "+", 
+RowBox[{"ms", " ", "z"}], "+", 
+RowBox[{"ls", " ", 
+RowBox[{"Min", "[", 
+RowBox[{
+RowBox[{
+RowBox[{"-", "epsilon"}], "+", "pmax", "-", "wmin"}], ",", 
+RowBox[{"wmax", "-", "wmin"}]}], "]"}]}]}], ")"}]}]]}], "]"}]}]}]}], 
+RowBox[{
+RowBox[{"wmax", "-", "wmin"}], "<=", 
+RowBox[{"2", " ", "epsilon"}]}]},
+{
+RowBox[{
+RowBox[{
+RowBox[{"-", "epsilon"}], " ", "ls"}], "+", 
+RowBox[{"ls", " ", 
+RowBox[{"(", 
+RowBox[{
+RowBox[{"-", "epsilon"}], "+", "wmax", "-", 
+RowBox[{"2", " ", "wmin"}]}], ")"}]}], "+", 
+RowBox[{"ms", " ", "z"}], "+", 
+RowBox[{
+FractionBox["1", "mb"], 
+RowBox[{
+RowBox[{"(", 
+RowBox[{"lb", "-", 
+RowBox[{"lb", " ", "ms"}]}], ")"}], " ", 
+RowBox[{"Min", "[", 
+RowBox[{
+FractionBox[
+RowBox[{"mb", " ", 
+RowBox[{"(", 
+RowBox[{
+RowBox[{"-", "epsilon"}], "+", "wmax", "-", "wmin"}], ")"}], " ", 
+RowBox[{"(", 
+RowBox[{
+RowBox[{
+RowBox[{"-", "epsilon"}], " ", "ls"}], "+", 
+RowBox[{"ls", " ", 
+RowBox[{"(", 
+RowBox[{"wmax", "-", "wmin"}], ")"}]}], "+", 
+RowBox[{"ms", " ", "z"}]}], ")"}]}], 
+RowBox[{"lb", " ", "ms", " ", 
+RowBox[{"(", 
+RowBox[{"wmax", "-", "wmin"}], ")"}]}]], ",", 
+FractionBox[
+RowBox[{
+RowBox[{"(", 
+RowBox[{
+RowBox[{"-", "epsilon"}], "+", "wmax", "-", "wmin"}], ")"}], " ", 
+RowBox[{"(", 
+RowBox[{
+RowBox[{
+RowBox[{"-", "epsilon"}], " ", "ls"}], "+", 
+RowBox[{"ls", " ", 
+RowBox[{"(", 
+RowBox[{"wmax", "-", "wmin"}], ")"}]}], "+", 
+RowBox[{"ms", " ", "z"}]}], ")"}]}], 
+RowBox[{
+RowBox[{
+RowBox[{"-", "epsilon"}], " ", "ls"}], "+", 
+RowBox[{"ls", " ", 
+RowBox[{"(", 
+RowBox[{"wmax", "-", "wmin"}], ")"}]}], "+", 
+RowBox[{"ms", " ", "z"}], "+", 
+RowBox[{"ls", " ", 
+RowBox[{"Min", "[", 
+RowBox[{
+RowBox[{
+RowBox[{"-", "epsilon"}], "+", "pmax", "-", "wmin"}], ",", 
+RowBox[{"wmax", "-", "wmin"}]}], "]"}]}]}]]}], "]"}]}]}]}], 
+TagBox["True",
+"PiecewiseDefault",
+AutoDelete->True]}
+},
+AllowedDimensions->{2, Automatic},
+Editable->True,
+GridBoxAlignment->{
+         "Columns" -> {{Left}}, "ColumnsIndexed" -> {}, 
+          "Rows" -> {{Baseline}}, "RowsIndexed" -> {}, "Items" -> {}, 
+          "ItemsIndexed" -> {}},
+GridBoxItemSize->{
+         "Columns" -> {{Automatic}}, "ColumnsIndexed" -> {}, 
+          "Rows" -> {{1.}}, "RowsIndexed" -> {}, "Items" -> {}, 
+          "ItemsIndexed" -> {}},
+GridBoxSpacings->{"Columns" -> {
+Offset[0.27999999999999997`], {
+Offset[0.84]}, 
+Offset[0.27999999999999997`]}, "ColumnsIndexed" -> {}, "Rows" -> {
+Offset[0.2], {
+Offset[0.4]}, 
+Offset[0.2]}, "RowsIndexed" -> {}, "Items" -> {}, 
+          "ItemsIndexed" -> {}},
+Selectable->True]}
+},
+GridBoxAlignment->{
+      "Columns" -> {{Left}}, "ColumnsIndexed" -> {}, 
+       "Rows" -> {{Baseline}}, "RowsIndexed" -> {}, "Items" -> {}, 
+       "ItemsIndexed" -> {}},
+GridBoxItemSize->{
+      "Columns" -> {{Automatic}}, "ColumnsIndexed" -> {}, 
+       "Rows" -> {{1.}}, "RowsIndexed" -> {}, "Items" -> {}, 
+       "ItemsIndexed" -> {}},
+GridBoxSpacings->{"Columns" -> {
+Offset[0.27999999999999997`], {
+Offset[0.35]}, 
+Offset[0.27999999999999997`]}, "ColumnsIndexed" -> {}, "Rows" -> {
+Offset[0.2], {
+Offset[0.4]}, 
+Offset[0.2]}, "RowsIndexed" -> {}, "Items" -> {}, 
+       "ItemsIndexed" -> {}}],
+"Piecewise",
+DeleteWithContents->True,
+Editable->False,
+SelectWithContents->True,
+Selectable->False]\)
+
+\!\(
+TagBox[GridBox[{
+{"\[Piecewise]", GridBox[{
+{
+RowBox[{
+RowBox[{
+FractionBox["1", "2"], " ", "ls", " ", 
+RowBox[{"(", 
+RowBox[{"wmax", "-", "wmin"}], ")"}]}], "-", 
+RowBox[{"ls", " ", 
+RowBox[{"(", 
+RowBox[{"epsilon", "+", "wmin"}], ")"}]}], "+", 
+RowBox[{"ms", " ", "z"}], "+", 
+RowBox[{
+FractionBox["1", "mb"], 
+RowBox[{"lb", " ", 
+RowBox[{"(", 
+RowBox[{
+RowBox[{"-", "1"}], "+", 
+FractionBox["1", "ms"]}], ")"}], " ", "ms", " ", 
+RowBox[{"Min", "[", 
+RowBox[{
+FractionBox[
+RowBox[{"mb", " ", 
+RowBox[{"(", 
+RowBox[{"wmax", "-", "wmin"}], ")"}], " ", 
+RowBox[{"(", 
+RowBox[{
+RowBox[{
+FractionBox["1", "2"], " ", "ls", " ", 
+RowBox[{"(", 
+RowBox[{"wmax", "-", "wmin"}], ")"}]}], "+", 
+RowBox[{"ms", " ", "z"}]}], ")"}]}], 
+RowBox[{"4", " ", "epsilon", " ", "lb", " ", "ms"}]], ",", 
+FractionBox[
+RowBox[{
+SuperscriptBox[
+RowBox[{"(", 
+RowBox[{"wmax", "-", "wmin"}], ")"}], "2"], " ", 
+RowBox[{"(", 
+RowBox[{
+RowBox[{
+FractionBox["1", "2"], " ", "ls", " ", 
+RowBox[{"(", 
+RowBox[{"wmax", "-", "wmin"}], ")"}]}], "+", 
+RowBox[{"ms", " ", "z"}]}], ")"}]}], 
+RowBox[{"4", " ", "epsilon", " ", 
+RowBox[{"(", 
+RowBox[{
+RowBox[{
+FractionBox["1", "2"], " ", "ls", " ", 
+RowBox[{"(", 
+RowBox[{"wmax", "-", "wmin"}], ")"}]}], "+", 
+RowBox[{"ms", " ", "z"}], "+", 
+RowBox[{"ls", " ", 
+RowBox[{"Min", "[", 
+RowBox[{
+RowBox[{
+RowBox[{"-", "epsilon"}], "+", "pmax", "-", "wmin"}], ",", 
+RowBox[{"wmax", "-", "wmin"}]}], "]"}]}]}], ")"}]}]]}], "]"}]}]}]}], 
+RowBox[{
+RowBox[{"wmax", "-", "wmin"}], "<=", 
+RowBox[{"2", " ", "epsilon"}]}]},
+{
+RowBox[{
+RowBox[{
+RowBox[{"-", "epsilon"}], " ", "ls"}], "+", 
+RowBox[{"ls", " ", 
+RowBox[{"(", 
+RowBox[{
+RowBox[{"-", "epsilon"}], "+", "wmax", "-", 
+RowBox[{"2", " ", "wmin"}]}], ")"}]}], "+", 
+RowBox[{"ms", " ", "z"}], "+", 
+RowBox[{
+FractionBox["1", "mb"], 
+RowBox[{
+RowBox[{"(", 
+RowBox[{"lb", "-", 
+RowBox[{"lb", " ", "ms"}]}], ")"}], " ", 
+RowBox[{"Min", "[", 
+RowBox[{
+FractionBox[
+RowBox[{"mb", " ", 
+RowBox[{"(", 
+RowBox[{
+RowBox[{"-", "epsilon"}], "+", "wmax", "-", "wmin"}], ")"}], " ", 
+RowBox[{"(", 
+RowBox[{
+RowBox[{
+RowBox[{"-", "epsilon"}], " ", "ls"}], "+", 
+RowBox[{"ls", " ", 
+RowBox[{"(", 
+RowBox[{"wmax", "-", "wmin"}], ")"}]}], "+", 
+RowBox[{"ms", " ", "z"}]}], ")"}]}], 
+RowBox[{"lb", " ", "ms", " ", 
+RowBox[{"(", 
+RowBox[{"wmax", "-", "wmin"}], ")"}]}]], ",", 
+FractionBox[
+RowBox[{
+RowBox[{"(", 
+RowBox[{
+RowBox[{"-", "epsilon"}], "+", "wmax", "-", "wmin"}], ")"}], " ", 
+RowBox[{"(", 
+RowBox[{
+RowBox[{
+RowBox[{"-", "epsilon"}], " ", "ls"}], "+", 
+RowBox[{"ls", " ", 
+RowBox[{"(", 
+RowBox[{"wmax", "-", "wmin"}], ")"}]}], "+", 
+RowBox[{"ms", " ", "z"}]}], ")"}]}], 
+RowBox[{
+RowBox[{
+RowBox[{"-", "epsilon"}], " ", "ls"}], "+", 
+RowBox[{"ls", " ", 
+RowBox[{"(", 
+RowBox[{"wmax", "-", "wmin"}], ")"}]}], "+", 
+RowBox[{"ms", " ", "z"}], "+", 
+RowBox[{"ls", " ", 
+RowBox[{"Min", "[", 
+RowBox[{
+RowBox[{
+RowBox[{"-", "epsilon"}], "+", "pmax", "-", "wmin"}], ",", 
+RowBox[{"wmax", "-", "wmin"}]}], "]"}]}]}]]}], "]"}]}]}]}], 
+TagBox["True",
+"PiecewiseDefault",
+AutoDelete->True]}
+},
+AllowedDimensions->{2, Automatic},
+Editable->True,
+GridBoxAlignment->{
+        "Columns" -> {{Left}}, "ColumnsIndexed" -> {}, 
+         "Rows" -> {{Baseline}}, "RowsIndexed" -> {}, "Items" -> {}, 
+         "ItemsIndexed" -> {}},
+GridBoxItemSize->{
+        "Columns" -> {{Automatic}}, "ColumnsIndexed" -> {}, 
+         "Rows" -> {{1.}}, "RowsIndexed" -> {}, "Items" -> {}, 
+         "ItemsIndexed" -> {}},
+GridBoxSpacings->{"Columns" -> {
+Offset[0.27999999999999997`], {
+Offset[0.84]}, 
+Offset[0.27999999999999997`]}, "ColumnsIndexed" -> {}, "Rows" -> {
+Offset[0.2], {
+Offset[0.4]}, 
+Offset[0.2]}, "RowsIndexed" -> {}, "Items" -> {}, 
+         "ItemsIndexed" -> {}},
+Selectable->True]}
+},
+GridBoxAlignment->{
+     "Columns" -> {{Left}}, "ColumnsIndexed" -> {}, 
+      "Rows" -> {{Baseline}}, "RowsIndexed" -> {}, "Items" -> {}, 
+      "ItemsIndexed" -> {}},
+GridBoxItemSize->{
+     "Columns" -> {{Automatic}}, "ColumnsIndexed" -> {}, 
+      "Rows" -> {{1.}}, "RowsIndexed" -> {}, "Items" -> {}, 
+      "ItemsIndexed" -> {}},
+GridBoxSpacings->{"Columns" -> {
+Offset[0.27999999999999997`], {
+Offset[0.35]}, 
+Offset[0.27999999999999997`]}, "ColumnsIndexed" -> {}, "Rows" -> {
+Offset[0.2], {
+Offset[0.4]}, 
+Offset[0.2]}, "RowsIndexed" -> {}, "Items" -> {}, 
+      "ItemsIndexed" -> {}}],
+"Piecewise",
+DeleteWithContents->True,
+Editable->False,
+SelectWithContents->True,
+Selectable->False]\)
+
+(* Define Q1 *)
+
+polycentralized1 = 
+ ms NScent - 
+  ls pmax + (-1 + 1/ms) ms NScent Min[1, (
+    lb (epsilon - pmax + wmax))/(mb NScent)] ( \!\(\*
+TagBox[GridBox[{
+{"\[Piecewise]", GridBox[{
+{
+FractionBox[
+RowBox[{
+RowBox[{"-", "pmax"}], "+", "wmax"}], 
+RowBox[{"epsilon", "-", "pmax", "+", "wmax"}]], 
+RowBox[{"pmax", "<", 
+RowBox[{
+RowBox[{"-", "epsilon"}], "+", "wmax"}]}]},
+{
+FractionBox[
+RowBox[{"epsilon", "-", "pmax", "+", "wmax"}], 
+RowBox[{"4", " ", "epsilon"}]], 
+RowBox[{
+RowBox[{"epsilon", "+", "wmax"}], ">=", "pmax", ">=", 
+RowBox[{
+RowBox[{"-", "epsilon"}], "+", "wmax"}]}]},
+{"0", 
+TagBox["True",
+"PiecewiseDefault",
+AutoDelete->True]}
+},
+AllowedDimensions->{2, Automatic},
+Editable->True,
+GridBoxAlignment->{
+            "Columns" -> {{Left}}, "ColumnsIndexed" -> {}, 
+             "Rows" -> {{Baseline}}, "RowsIndexed" -> {}, 
+             "Items" -> {}, "ItemsIndexed" -> {}},
+GridBoxItemSize->{
+            "Columns" -> {{Automatic}}, "ColumnsIndexed" -> {}, 
+             "Rows" -> {{1.}}, "RowsIndexed" -> {}, "Items" -> {}, 
+             "ItemsIndexed" -> {}},
+GridBoxSpacings->{"Columns" -> {
+Offset[0.27999999999999997`], {
+Offset[0.84]}, 
+Offset[0.27999999999999997`]}, "ColumnsIndexed" -> {}, "Rows" -> {
+Offset[0.2], {
+Offset[0.4]}, 
+Offset[0.2]}, "RowsIndexed" -> {}, "Items" -> {}, 
+             "ItemsIndexed" -> {}},
+Selectable->True]}
+},
+GridBoxAlignment->{
+         "Columns" -> {{Left}}, "ColumnsIndexed" -> {}, 
+          "Rows" -> {{Baseline}}, "RowsIndexed" -> {}, "Items" -> {}, 
+          "ItemsIndexed" -> {}},
+GridBoxItemSize->{
+         "Columns" -> {{Automatic}}, "ColumnsIndexed" -> {}, 
+          "Rows" -> {{1.}}, "RowsIndexed" -> {}, "Items" -> {}, 
+          "ItemsIndexed" -> {}},
+GridBoxSpacings->{"Columns" -> {
+Offset[0.27999999999999997`], {
+Offset[0.35]}, 
+Offset[0.27999999999999997`]}, "ColumnsIndexed" -> {}, "Rows" -> {
+Offset[0.2], {
+Offset[0.4]}, 
+Offset[0.2]}, "RowsIndexed" -> {}, "Items" -> {}, 
+          "ItemsIndexed" -> {}}],
+"Piecewise",
+DeleteWithContents->True,
+Editable->False,
+SelectWithContents->True,
+Selectable->False]\) )
+
+ms NScent - 
+ ls pmax + (-1 + 1/ms) ms NScent Min[1, (lb (epsilon - pmax + wmax))/(
+   mb NScent)] ( \!\(\*
+TagBox[GridBox[{
+{"\[Piecewise]", GridBox[{
+{
+FractionBox[
+RowBox[{
+RowBox[{"-", "pmax"}], "+", "wmax"}], 
+RowBox[{"epsilon", "-", "pmax", "+", "wmax"}]], 
+RowBox[{"pmax", "<", 
+RowBox[{
+RowBox[{"-", "epsilon"}], "+", "wmax"}]}]},
+{
+FractionBox[
+RowBox[{"epsilon", "-", "pmax", "+", "wmax"}], 
+RowBox[{"4", " ", "epsilon"}]], 
+RowBox[{
+RowBox[{"epsilon", "+", "wmax"}], ">=", "pmax", ">=", 
+RowBox[{
+RowBox[{"-", "epsilon"}], "+", "wmax"}]}]},
+{"0", 
+TagBox["True",
+"PiecewiseDefault",
+AutoDelete->True]}
+},
+AllowedDimensions->{2, Automatic},
+Editable->True,
+GridBoxAlignment->{
+           "Columns" -> {{Left}}, "ColumnsIndexed" -> {}, 
+            "Rows" -> {{Baseline}}, "RowsIndexed" -> {}, 
+            "Items" -> {}, "ItemsIndexed" -> {}},
+GridBoxItemSize->{
+           "Columns" -> {{Automatic}}, "ColumnsIndexed" -> {}, 
+            "Rows" -> {{1.}}, "RowsIndexed" -> {}, "Items" -> {}, 
+            "ItemsIndexed" -> {}},
+GridBoxSpacings->{"Columns" -> {
+Offset[0.27999999999999997`], {
+Offset[0.84]}, 
+Offset[0.27999999999999997`]}, "ColumnsIndexed" -> {}, "Rows" -> {
+Offset[0.2], {
+Offset[0.4]}, 
+Offset[0.2]}, "RowsIndexed" -> {}, "Items" -> {}, 
+            "ItemsIndexed" -> {}},
+Selectable->True]}
+},
+GridBoxAlignment->{
+        "Columns" -> {{Left}}, "ColumnsIndexed" -> {}, 
+         "Rows" -> {{Baseline}}, "RowsIndexed" -> {}, "Items" -> {}, 
+         "ItemsIndexed" -> {}},
+GridBoxItemSize->{
+        "Columns" -> {{Automatic}}, "ColumnsIndexed" -> {}, 
+         "Rows" -> {{1.}}, "RowsIndexed" -> {}, "Items" -> {}, 
+         "ItemsIndexed" -> {}},
+GridBoxSpacings->{"Columns" -> {
+Offset[0.27999999999999997`], {
+Offset[0.35]}, 
+Offset[0.27999999999999997`]}, "ColumnsIndexed" -> {}, "Rows" -> {
+Offset[0.2], {
+Offset[0.4]}, 
+Offset[0.2]}, "RowsIndexed" -> {}, "Items" -> {}, 
+         "ItemsIndexed" -> {}}],
+"Piecewise",
+DeleteWithContents->True,
+Editable->False,
+SelectWithContents->True,
+Selectable->False]\) )
+
+(* Define Q2 *)
+
+polycentralized2 = -1 + 
+  wmax + (-1 + 1/mb) (epsilon - pmax + wmax) Min[1, (mb NScent)/(
+    lb (epsilon - pmax + wmax))] ( \!\(\*
+TagBox[GridBox[{
+{"\[Piecewise]", GridBox[{
+{
+FractionBox[
+RowBox[{
+RowBox[{"-", "pmax"}], "+", "wmax"}], 
+RowBox[{"epsilon", "-", "pmax", "+", "wmax"}]], 
+RowBox[{"pmax", "<", 
+RowBox[{
+RowBox[{"-", "epsilon"}], "+", "wmax"}]}]},
+{
+FractionBox[
+RowBox[{"epsilon", "-", "pmax", "+", "wmax"}], 
+RowBox[{"4", " ", "epsilon"}]], 
+RowBox[{
+RowBox[{"epsilon", "+", "wmax"}], ">=", "pmax", ">=", 
+RowBox[{
+RowBox[{"-", "epsilon"}], "+", "wmax"}]}]},
+{"0", 
+TagBox["True",
+"PiecewiseDefault",
+AutoDelete->True]}
+},
+AllowedDimensions->{2, Automatic},
+Editable->True,
+GridBoxAlignment->{
+            "Columns" -> {{Left}}, "ColumnsIndexed" -> {}, 
+             "Rows" -> {{Baseline}}, "RowsIndexed" -> {}, 
+             "Items" -> {}, "ItemsIndexed" -> {}},
+GridBoxItemSize->{
+            "Columns" -> {{Automatic}}, "ColumnsIndexed" -> {}, 
+             "Rows" -> {{1.}}, "RowsIndexed" -> {}, "Items" -> {}, 
+             "ItemsIndexed" -> {}},
+GridBoxSpacings->{"Columns" -> {
+Offset[0.27999999999999997`], {
+Offset[0.84]}, 
+Offset[0.27999999999999997`]}, "ColumnsIndexed" -> {}, "Rows" -> {
+Offset[0.2], {
+Offset[0.4]}, 
+Offset[0.2]}, "RowsIndexed" -> {}, "Items" -> {}, 
+             "ItemsIndexed" -> {}},
+Selectable->True]}
+},
+GridBoxAlignment->{
+         "Columns" -> {{Left}}, "ColumnsIndexed" -> {}, 
+          "Rows" -> {{Baseline}}, "RowsIndexed" -> {}, "Items" -> {}, 
+          "ItemsIndexed" -> {}},
+GridBoxItemSize->{
+         "Columns" -> {{Automatic}}, "ColumnsIndexed" -> {}, 
+          "Rows" -> {{1.}}, "RowsIndexed" -> {}, "Items" -> {}, 
+          "ItemsIndexed" -> {}},
+GridBoxSpacings->{"Columns" -> {
+Offset[0.27999999999999997`], {
+Offset[0.35]}, 
+Offset[0.27999999999999997`]}, "ColumnsIndexed" -> {}, "Rows" -> {
+Offset[0.2], {
+Offset[0.4]}, 
+Offset[0.2]}, "RowsIndexed" -> {}, "Items" -> {}, 
+          "ItemsIndexed" -> {}}],
+"Piecewise",
+DeleteWithContents->True,
+Editable->False,
+SelectWithContents->True,
+Selectable->False]\) )
+
+-1 + wmax + (-1 + 1/mb) (epsilon - pmax + wmax) Min[1, (mb NScent)/(
+   lb (epsilon - pmax + wmax))] ( \!\(\*
+TagBox[GridBox[{
+{"\[Piecewise]", GridBox[{
+{
+FractionBox[
+RowBox[{
+RowBox[{"-", "pmax"}], "+", "wmax"}], 
+RowBox[{"epsilon", "-", "pmax", "+", "wmax"}]], 
+RowBox[{"pmax", "<", 
+RowBox[{
+RowBox[{"-", "epsilon"}], "+", "wmax"}]}]},
+{
+FractionBox[
+RowBox[{"epsilon", "-", "pmax", "+", "wmax"}], 
+RowBox[{"4", " ", "epsilon"}]], 
+RowBox[{
+RowBox[{"epsilon", "+", "wmax"}], ">=", "pmax", ">=", 
+RowBox[{
+RowBox[{"-", "epsilon"}], "+", "wmax"}]}]},
+{"0", 
+TagBox["True",
+"PiecewiseDefault",
+AutoDelete->True]}
+},
+AllowedDimensions->{2, Automatic},
+Editable->True,
+GridBoxAlignment->{
+           "Columns" -> {{Left}}, "ColumnsIndexed" -> {}, 
+            "Rows" -> {{Baseline}}, "RowsIndexed" -> {}, 
+            "Items" -> {}, "ItemsIndexed" -> {}},
+GridBoxItemSize->{
+           "Columns" -> {{Automatic}}, "ColumnsIndexed" -> {}, 
+            "Rows" -> {{1.}}, "RowsIndexed" -> {}, "Items" -> {}, 
+            "ItemsIndexed" -> {}},
+GridBoxSpacings->{"Columns" -> {
+Offset[0.27999999999999997`], {
+Offset[0.84]}, 
+Offset[0.27999999999999997`]}, "ColumnsIndexed" -> {}, "Rows" -> {
+Offset[0.2], {
+Offset[0.4]}, 
+Offset[0.2]}, "RowsIndexed" -> {}, "Items" -> {}, 
+            "ItemsIndexed" -> {}},
+Selectable->True]}
+},
+GridBoxAlignment->{
+        "Columns" -> {{Left}}, "ColumnsIndexed" -> {}, 
+         "Rows" -> {{Baseline}}, "RowsIndexed" -> {}, "Items" -> {}, 
+         "ItemsIndexed" -> {}},
+GridBoxItemSize->{
+        "Columns" -> {{Automatic}}, "ColumnsIndexed" -> {}, 
+         "Rows" -> {{1.}}, "RowsIndexed" -> {}, "Items" -> {}, 
+         "ItemsIndexed" -> {}},
+GridBoxSpacings->{"Columns" -> {
+Offset[0.27999999999999997`], {
+Offset[0.35]}, 
+Offset[0.27999999999999997`]}, "ColumnsIndexed" -> {}, "Rows" -> {
+Offset[0.2], {
+Offset[0.4]}, 
+Offset[0.2]}, "RowsIndexed" -> {}, "Items" -> {}, 
+         "ItemsIndexed" -> {}}],
+"Piecewise",
+DeleteWithContents->True,
+Editable->False,
+SelectWithContents->True,
+Selectable->False]\) )
+
+solvenoncentralized[muB_, muS_, lambdaB_, lambdaS_, eps_, pmi_, 
+  pma_] :=
+ (
+  (*Solve for decentralized equilibrium given natural constraints. 
+  For computational efficiency reasons, 
+  if the run takes more than 2 seconds, 
+  perturb by the trivial amount 10^-4 and start solving again*)
+  reduce1 = 
+   TimeConstrained[
+    ToRules@Reduce[(poly1 /. {z -> 0, ms -> muS, mb -> muB, 
+           lb -> lambdaB, ls -> lambdaS, epsilon -> eps}) == 
+        0 && (poly2 /. {z -> 0, ms -> muS, mb -> muB, lb -> lambdaB, 
+           ls -> lambdaS, epsilon -> eps}) == 0   && 
+       1 >= wmax > wmin >= -eps  && pmi < wmin + eps < pma && 
+       lb == lambdaB && ls == lambdaS && mb == muB && ms == muS && 
+       epsilon == eps && pmin == pmi && pmax == pma  && z == 0], 
+    2, {}];
+  reduce2 = 
+   TimeConstrained[
+    ToRules@Reduce[(poly1 /. {wmin -> pmi - eps, ms -> muS, mb -> muB,
+            lb -> lambdaB, ls -> lambdaS, epsilon -> eps}) == 
+        0 && (poly2 /. {wmin -> pmi - eps, ms -> muS, mb -> muB, 
+           lb -> lambdaB, ls -> lambdaS, epsilon -> eps}) == 0 &&  
+       1 >= wmax > pmi - eps >= -eps  && lb == lambdaB && 
+       ls == lambdaS && mb == muB && ms == muS && epsilon == eps && 
+       pmin == pmi && pmax == pma && 
+       wmin == pmi - eps < pma - eps &&  z > 10^-5], 2, {}];
+  reduce = List[reduce1, reduce2];
+  If[reduce == {{}} ||  reduce == {},
+   reduce1 = 
+    TimeConstrained[
+     ToRules@Reduce[(poly1 /. {z -> 0, ms -> muS, mb -> muB, 
+            lb -> lambdaB, ls -> lambdaS, epsilon -> eps}) == 
+         0 && (poly2 /. {z -> 0, ms -> muS, mb -> muB, lb -> lambdaB, 
+            ls -> lambdaS, epsilon -> eps}) == 0 && 
+        1 >= wmax > wmin >= -eps  && pmi < wmin + eps < pma && 
+        lb == lambdaB && ls == lambdaS && mb == muB && ms == muS && 
+        epsilon == eps && pmin == pmi + 10^-4 && pmax == pma  && 
+        z == 0], 2, {}];
+   reduce2 = 
+    TimeConstrained[
+     ToRules@Reduce[(poly1 /. {wmin -> pmi - eps + 0.0001, ms -> muS, 
+            mb -> muB, lb -> lambdaB, ls -> lambdaS, 
+            epsilon -> eps}) == 
+         0 && (poly2 /. {wmin -> pmi - eps + 0.0001, ms -> muS, 
+            mb -> muB, lb -> lambdaB, ls -> lambdaS, 
+            epsilon -> eps}) == 0 && 1 >= wmax > pmi - eps >= -eps  && 
+        lb == lambdaB && ls == lambdaS && mb == muB && ms == muS && 
+        epsilon == eps && pmin == pmi + 0.0001 && pmax == pma && 
+        wmin == pmi - eps < pma - eps &&  z > 10^-5], 2, {}];
+   reduce = List[reduce1, reduce2];
+   , reduce];
+  reduce
+  )
+
+solvecentralized[mub_, mus_, lambdab_, lambdas_, eps_, p_] :=
+ (
+  (*Solve for centralized equilibrium*)
+  solvecent = 
+   ToRules@Reduce[(polycentralized1 /. {ms -> mus, mb -> mub, 
+          lb -> lambdab, ls -> lambdas, epsilon -> eps, pmax -> p}) ==
+        0 && (polycentralized2 /. {ms -> mus, mb -> mub, 
+          lb -> lambdab, ls -> lambdas, epsilon -> eps, pmax -> p}) ==
+        0 && 1 >= wmax > -eps && p < wmax + eps && lb == lambdab && 
+      ls == lambdas && mb == mub && ms == mus && epsilon == eps && 
+      wmin == p - eps ];
+  solvecent
+  )
+
+outcomecalcbasic[] :=
+ (
+  ometa = 
+   TransformedDistribution[
+    omega + eta, {eta \[Distributed] 
+      UniformDistribution[{-epsilon, epsilon}], 
+     omega \[Distributed] UniformDistribution[{wmin, wmax}]}];
+  ometacdf = Assuming[wmax > wmin > -epsilon, CDF[ometa, x]];
+  ometacdfderivative = D[ometacdf, x]; (*This is -phi'(p,
+  tau) because ometacdf not 1-ometacdf*)
+  )
+
+(*Run outcomecalcbasic[] before continuing. This is to calculate \
+phi(p,tau)(.) and phi'(p,tau)(.), which will be used later.*)
+
+outcomecalcbasic[];
+
+(*sellerprofitandplatrevenue[...] calculates the total seller profit \
+and platform's gross revenue*)
+
+sellerprofitandplatrevenue[wmi_, wma_, mub_, mus_, lambdab_, lambdas_,
+   eps_, NSmi_, pmi_, pma_] :=
+ (
+  omcdfoneminus = (1 - ometacdf) /. {wmax -> wma, wmin -> wmi, 
+     epsilon -> eps};
+  probofchosen = 
+   Min[1, NB/NS] /. {wmax -> wma, wmin -> wmi, lb -> lambdab, 
+     ls -> lambdas, mb -> mub, ms -> mus, epsilon -> eps, pmax -> pma,
+      z -> NSmi};
+  pminusc = ((omcdfoneminus)/ometacdfderivative /. {wmax -> wma, 
+       wmin -> wmi})*(1 + (1 - mus)*(omcdfoneminus)*probofchosen/mus);
+  cmin = (NSmi*((1 - mus)*(omcdfoneminus)*probofchosen + mus)/
+       lambdas) /. {x -> pmi, epsilon -> eps};
+  ToIntegrateseller = (pminusc*(omcdfoneminus)) /. {wmin -> wmi, 
+     wmax -> wma, epsilon -> eps};
+  ToIntegraterevenue = (x*(omcdfoneminus)) /. {wmin -> wmi, 
+     wmax -> wma, epsilon -> eps};
+  profitU = 
+   NIntegrate[
+      ToIntegrateseller, {x, wmi + eps, 
+       Max[wmi + eps, Min[wma - eps, pma]]}]*2*lambdas/mus + 
+    NIntegrate[
+      ToIntegrateseller, {x, Max[wmi + eps, Min[wma - eps, pma]], 
+       Max[wmi + eps, Min[wma + eps, pma]]}]*3*lambdas/2/mus;
+  revenueU = 
+   NIntegrate[
+      ToIntegraterevenue, {x, wmi + eps, 
+       Max[wmi + eps, Min[wma - eps, pma]]}]*2*lambdas/mus + 
+    NIntegrate[
+      ToIntegraterevenue, {x, Max[wmi + eps, Min[wma - eps, pma]], 
+       Max[wmi + eps, Min[wma + eps, pma]]}]*3*lambdas/2/mus;
+  NSmaxevaluate = 
+   NSmax /. {wmax -> wma, wmin -> wmi, lb -> lambdab, ls -> lambdas, 
+     mb -> mub, ms -> mus, epsilon -> eps, pmax -> pma};
+  NSevaluate = 
+   NS /. {wmax -> wma, wmin -> wmi, lb -> lambdab, ls -> lambdas, 
+     mb -> mub, ms -> mus, epsilon -> eps, pmax -> pma, z -> NSmi};
+  pmaxminuscmax = (NSmaxevaluate*((1 - mus)*(omcdfoneminus)*
+          probofchosen + mus)/lambdas) /. {x -> pma, epsilon -> eps};
+  cmax = pma - pmaxminuscmax;
+  profitminmax = (NSmi*(omcdfoneminus /. {x -> pmi, 
+         epsilon -> eps})*(pmi - cmin/2) + 
+     NSmaxevaluate*(omcdfoneminus /. {x -> pma, 
+         epsilon -> eps})*(pma - cmax)/2); 
+  revenueminmax = (NSmi*(omcdfoneminus /. {x -> pmi, 
+         epsilon -> eps})*(pmi) + 
+     NSmaxevaluate*(omcdfoneminus /. {x -> pma, epsilon -> eps})*
+      pma); (*Important note: 
+  This is due to the uniformity of costs of sellers with prices at \
+pmin or pmax*)
+  {NSevaluate, (profitU + profitminmax)*
+    probofchosen, (revenueU + revenueminmax)*probofchosen}
+  )
+
+(*calctaubasic[] calculates expectations and probabilities that will \
+be used in calculating the total buyer surplus. Note that the \
+function Boole[A] is an indicator function that returns 1 if the \
+event A is true.*)
+
+calctaubasic[] :=
+ (
+  EU1 = Block[{$Assumptions = 
+      b1 <=  b2 && omegaknown > b1 - epsilon > -epsilon && 
+       epsilon > 0}, 
+    Simplify[
+     Expectation[(omegaknown - pU1 + eta) Boole[
+        omegaknown + eta >= pU1], {pU1 \[Distributed] 
+        UniformDistribution[{b1, b2}], 
+       eta \[Distributed] UniformDistribution[{-epsilon, epsilon}]}]]];
+  EU2 = Block[{$Assumptions = 
+      b2 <=  b3 && omegaknown > -epsilon && epsilon > 0}, 
+    Simplify[
+     Expectation[(omegaknown - pU1 + eta) Boole[
+        omegaknown + eta >= pU1], {pU1 \[Distributed] 
+        UniformDistribution[{b2, b3}], 
+       eta \[Distributed] UniformDistribution[{-epsilon, epsilon}]}]]];
+  Emin = Expectation[(omegaknown - wmin - epsilon + eta) Boole[
+      omegaknown + eta >= wmin + epsilon], {eta \[Distributed] 
+      UniformDistribution[{-epsilon, epsilon}]}];
+  Emax = Expectation[(omegaknown - pmax + eta) Boole[
+      omegaknown + eta >= pmax], {eta \[Distributed] 
+      UniformDistribution[{-epsilon, epsilon}]}];
+  PrMin = 
+   Probability[
+    omegaknown + eta >= 
+     wmin + epsilon, {eta \[Distributed] 
+      UniformDistribution[{-epsilon, epsilon}]}];
+  PrMax = 
+   Probability[
+    omegaknown + eta >= 
+     pmax, {eta \[Distributed] 
+      UniformDistribution[{-epsilon, epsilon}]}];
+  PU1 = Block[{$Assumptions = 
+      b1 <= b2 && omegaknown > b1 - epsilon > -epsilon && 
+       epsilon > 0}, 
+    Simplify[
+     Probability[
+      omegaknown + eta >= 
+       pU1, {pU1 \[Distributed] UniformDistribution[{b1, b2}], 
+       eta \[Distributed] UniformDistribution[{-epsilon, epsilon}]}]]];
+  PU2 = Block[{$Assumptions = 
+      b2 <= b3 && omegaknown > -epsilon && epsilon > 0}, 
+    Simplify[
+     Probability[
+      omegaknown + eta >= 
+       pU1, {pU1 \[Distributed] UniformDistribution[{b2, b3}], 
+       eta \[Distributed] UniformDistribution[{-epsilon, epsilon}]}]]];
+  P1 = (2*(b2 - b1)/(2*(b2 - b1) + 3*(b3 - b2)/2));
+  P2 = (3*(b3 - b2)/2/(2*(b2 - b1) + 3*(b3 - b2)/2));
+  PU = PU1*P1 + PU2*P2;
+  )
+
+calctaubasic[];
+
+(*calcBuyerSurplus[...] calculates the total buyer surplus*)
+
+calcBuyerSurplus[wmi_, wma_, mub_, mus_, lambdab_, lambdas_, eps_, 
+  NSmi_, pmi_, pma_] :=
+ (
+  NSevaluate = 
+   NS /. {wmax -> wma, wmin -> wmi, lb -> lambdab, ls -> lambdas, 
+     mb -> mub, ms -> mus, epsilon -> eps, pmax -> pma, z -> NSmi};
+  NBevaluate = (wma - wmi)*lambdab/mub;
+  NSmaxevaluate = 
+   NSmax /. {wmax -> wma, wmin -> wmi, lb -> lambdab, ls -> lambdas, 
+     mb -> mub, ms -> mus, epsilon -> eps, pmax -> pma};
+  probofchosenB = 
+   Min[1, NS/NB] /. {wmax -> wma, wmin -> wmi, lb -> lambdab, 
+     ls -> lambdas, mb -> mub, ms -> mus, epsilon -> eps, z -> NSmi, 
+     pmax -> pma};
+  Ex = (Emin*
+        NSmi/NSevaluate + (1 - (NSmi + NSmaxevaluate)/
+           NSevaluate)*(EU1*P1 + EU2*P2) + 
+       Emax*NSmaxevaluate/NSevaluate) /. {epsilon -> eps} /. {b1 -> 
+      wmi + eps, b2 -> Max[wmi + eps, Min[wma - eps, pma]], 
+     b3 -> Min[wma + eps, pma], wmin -> wmi, wmax -> wma, pmax -> pma};
+  probofmatch = (PrMin*
+        NSmi/NSevaluate + (1 - (NSmi + NSmaxevaluate)/NSevaluate)*PU +
+        PrMax*NSmaxevaluate/NSevaluate) /. {epsilon -> eps} /. {b1 -> 
+      wmi + eps, b2 -> Max[wmi + eps, Min[wma - eps, pma]], 
+     b3 -> Min[wma + eps, pma], wmin -> wmi, wmax -> wma, pmax -> pma};
+  tau = ((1/mub - 1)*probofchosenB*Ex) /. {epsilon -> eps} /. {b1 -> 
+      wmi + eps, b2 -> Max[wmi + eps, Min[wma - eps, pma]], 
+     b3 -> Min[wma + eps, pma], wmin -> wmi, wmax -> wma, pmax -> pma};
+  denominator = (1 - mub)*probofchosenB*probofmatch + mub;
+  toIntegrate = (lambdab/mub)*tau/(1 - mub)*denominator;
+  f = toIntegrate;
+  NIntegrate[f, {omegaknown, wmi, wma}]
+  )
+
+(*sellerprofitCent[...] and calcBuyerSurplusCent[...] calculate the \
+total seller profit, platform's gross revenue and buyer surplus for \
+the centralized setting*)
+
+sellerprofitandplatrevenueCent[wmi_, wma_, mub_, mus_, lambdab_, 
+  lambdas_, eps_, NS_, p_] :=
+ (
+  omcdfoneminus = (1 - ometacdf) /. {wmax -> wma, wmin -> wmi, x -> p,
+      epsilon -> eps};
+  NBeval = (wma - wmi)*lambdab/mub;
+  probofchosen = 
+   Min[1, NBeval/NS] /. {wmax -> wma, wmin -> wmi, lb -> lambdab, 
+     ls -> lambdas, mb -> mub, ms -> mus, epsilon -> eps, pmin -> p, 
+     pmax -> p};
+  (*Important note: 
+  The following is due to the uniformity of costs of sellers with \
+prices at pmin or pmax*)
+  profit = NS*omcdfoneminus*p/2; 
+  revenue = NS*omcdfoneminus*p; 
+  {NS, profit*probofchosen, revenue*probofchosen}
+  )
+
+calcBuyerSurplusCent[wmi_, wma_, mub_, mus_, lambdab_, lambdas_, eps_,
+   NS_, p_] :=
+ (
+  NBeval = (wma - wmi)*lambdab/mub;
+  probofchosenB = 
+   Min[1, NS/NBeval] /. {wmax -> wma, wmin -> wmi, lb -> lambdab, 
+     ls -> lambdas, mb -> mub, ms -> mus, epsilon -> eps, pmin -> p, 
+     pmax -> p};
+  U = omegaknown - p + eps;
+  L = Max[0, omegaknown - p - eps];
+  probofmatch = Max[0, Min[U/2/eps, 1]];
+  exp = (U + L)/2;
+  tau = (1/mub - 1)*
+    probofchosenB*(exp*probofmatch) ; (*The following two lines: 
+  Conditional expectation times prob instead of just expectation as \
+in the general case function*)
+  denominator = ((1 - mub)*probofmatch*probofchosenB + mub);
+  toIntegrate = (lambdab/mub)*tau/(1 - mub)*denominator;
+  NIntegrate[toIntegrate, {omegaknown, wmi, wma}]
+  )
+
+DoCentralized[mb_, ms_, lb_, ls_, eps_, p_] :=
+ (
+  Needs["GeneralUtilities`"];
+  solcent = solvecentralized[mb, ms, lb, ls, eps, p];
+  asolcent = ToAssociations[solcent];
+  omegamincent = asolcent[wmin];
+  omegamaxcent = asolcent[wmax];
+  NSevalcent = asolcent[NScent];
+  surpluscent = 
+   calcBuyerSurplusCent[omegamincent, omegamaxcent, mb, ms, lb, ls, 
+    eps, NSevalcent, p];
+  seller = 
+   sellerprofitandplatrevenueCent[omegamincent, omegamaxcent, mb, ms, 
+    lb, ls, eps, NSevalcent, p];
+  profitcent = seller[[2]];
+  revenuecent = seller[[3]];
+  NBevalcent = (omegamaxcent - omegamincent)*lb/mb;
+  welfarecent = surpluscent + profitcent;
+  {surpluscent, profitcent, welfarecent, revenuecent, omegamincent, 
+   omegamaxcent, NBevalcent, 0, NSevalcent, p, p, lb, ls, mb, ms, eps}
+  )
+
+DoEverything[mb_, ms_, lb_, ls_, eps_, pmi_, pma_] :=
+ (
+  Needs["GeneralUtilities`"];
+  (*If pmin=pmax, 
+  use the function DoCentralized to use the poylnomials Q1 and Q2; 
+  if not, use the function solvenoncentralized to use the polynomials \
+P1,P2, and P3. If there is no solution for pmin\[NotEqual]pmax, 
+  use the function DoCentralized with pmin=
+  pmax since all supplier mass is concentrated on pmax*)
+  If[pmi == pma,
+   DoCentralized[mb, ms, lb, ls, eps, pmi],
+   sol = solvenoncentralized[mb, ms, lb, ls, eps, pmi, pma];
+   If[sol == {},
+    DoCentralized[mb, ms, lb, ls, eps, pma],
+    (*Print a warning message if uniqueness is violated*)
+    cleanedsol = DeleteCases[sol, {}]; 
+    If[Length[cleanedsol] > 1, 
+     Print["WARNING! Uniqueness is violated"], NULL];
+    asol = ToAssociations[sol[[1]]];
+    (*Derive solutions from the solution object asol*)
+    omegamin = asol[wmin];
+    omegamax = asol[wmax];
+    (*zval is the mass of sellers with prices pmin*)
+    zval = asol[z];
+    pminn = asol[pmin];
+    pmaxx = asol[pmax];
+    surplus = 
+     calcBuyerSurplus[omegamin, omegamax, mb, ms, lb, ls, eps, zval, 
+      pminn, pmaxx];
+    seller = 
+     sellerprofitandplatrevenue[omegamin, omegamax, mb, ms, lb, ls, 
+      eps, zval, pminn, pmaxx];
+    profit = seller[[2]];
+    revenue = seller[[3]];
+    NSeval = seller[[1]];
+    NBeval = (omegamax - omegamin)*lb/mb;
+    welfare = surplus + profit;
+    res = {surplus, profit, welfare, revenue, omegamin, omegamax, 
+      NBeval, zval, NSeval, pmi, pma, lb, ls, mb, ms, eps};
+    N[res]
+    ]
+   ]
+  )
+
+(*The next function singlerun finds the equilibrium for a given \
+market condition and for all pmin,pmax values in increments of the \
+parameter inc*)
+
+singlerun[eps_, mu_, ls_, inc_] :=
+ (
+  (*List of pmin values to be used (Use the function Rationalize to \
+have rational numbers instead of floating-
+  point numbers for faster and more accurate calculations)*)
+  reps = Rationalize[eps];
+  rmu = Rationalize[mu];
+  rls = Rationalize[ls];
+  rinc = Rationalize[inc];
+  pminlist = Rationalize[Table[x, {x, 0, 1 + reps - rinc, rinc}]];
+  l1 = Length[pminlist];
+  (*List of omegamax values for each pmin value*)
+  wmaxlist = Table[
+    N[DoEverything[rmu, rmu, 1, rls, reps, pminlist[[i]], 1 + reps]][[
+     6]], {i, 1, l1, 1}];
+  (*Run for semi-centralized and centralized*)
+  tbl = Table[
+    N[DoEverything[rmu, rmu, 1, rls, reps, pminlist[[i]], 
+      Rationalize[pma]]], {i, 1, l1, 1}, {pma, 
+     Max[pminlist[[i]], rinc], wmaxlist[[i]] + reps, rinc}];
+  (*Run for decentralized and append*)
+  Table[tbl[[i]] = 
+    Append[tbl[[i]], 
+     N[DoEverything[rmu, rmu, 1, rls, reps, pminlist[[i]], 
+       1 + reps]]], {i, 1, l1, 1}];
+  (*Export the result to a csv file*)
+  Export[StringJoin["Mathematica_eps_", ToString[N[eps]], "_ls_", 
+    ToString[N[ls]], "_mu_", ToString[N[mu]], "_inc_", 
+    ToString[N[inc]], "_.csv"], Apply[Join, tbl // Map[Dataset]]]
+  )
+
+(*Test the function DoEverything that yields \
+{surplus,profit,welfare,revenue,omegamin,omegamax,NBeval,zval,NSeval,\
+pmi,pma,lb,ls,mb,ms,eps}*)
+
+DoEverything[0.1, 0.1, 1, 0.1, 0.001, 0, 0.7]
